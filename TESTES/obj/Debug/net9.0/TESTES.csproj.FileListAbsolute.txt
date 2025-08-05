@@ -1,0 +1,15 @@
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/bin/Debug/net9.0/TESTES
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/bin/Debug/net9.0/TESTES.deps.json
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/bin/Debug/net9.0/TESTES.runtimeconfig.json
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/bin/Debug/net9.0/TESTES.dll
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/bin/Debug/net9.0/TESTES.pdb
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.GeneratedMSBuildEditorConfig.editorconfig
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.AssemblyInfoInputs.cache
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.AssemblyInfo.cs
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.csproj.CoreCompileInputs.cache
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.sourcelink.json
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.dll
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/refint/TESTES.dll
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.pdb
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/TESTES.genruntimeconfig.cache
+/home/isaquermj/Curso_CS/ESTAGIO/TESTES/obj/Debug/net9.0/ref/TESTES.dll
