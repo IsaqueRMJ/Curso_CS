@@ -1,4 +1,4 @@
-﻿/*Console.WriteLine("Atribuindo valores não numéricos e comparação");
+﻿Console.WriteLine("Atribuindo valores não numéricos e comparação");
 
 bool ativo = true, passivo = false;
 int num_1 = 10, num_2 = 9;
@@ -34,13 +34,10 @@ dynamic verdade = true;
 Console.WriteLine(frase);
 Console.WriteLine(frase_2);
 Console.WriteLine("{0} {1} {2}", numero, nota, letra);
-Console.WriteLine(verdade); */
-
-using System.Reflection;
-using System.Runtime.InteropServices;
+Console.WriteLine(verdade);
 
 DateTime data_atual = DateTime.Now; //Data e hora atual de acordo com o formato defeinido do meu computadador 
-DateTime data_dif = new DateTime(2007, 11, 15, 16, 10, 30); // Data especifca no formato americano 
+DateTime data_dif = new DateTime(2007, 11, 15, 16, 10, 30); // Data especifca no formato aaaa/mm/dd hora:min:sec
 
 Console.WriteLine("Esta é a  data atual {0}, e esta a especifica {1}", data_atual, data_dif);
 // para estrais informação da data podemos pegar a variavel e usar
