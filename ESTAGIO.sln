@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dia_01", "Dia_01\Dia_01.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dia_02", "Dia_02\Dia_02.csproj", "{9354D30C-D1BD-430F-B00D-FBF53CC081A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dia_03", "Dia_03\Dia_03.csproj", "{FFD6258D-7942-4278-87B2-26FDD0546124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercio01_Curso", "Exercio01_Curso\Exercio01_Curso.csproj", "{84B78ED2-92B1-4271-8156-2409E445D8AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9354D30C-D1BD-430F-B00D-FBF53CC081A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9354D30C-D1BD-430F-B00D-FBF53CC081A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9354D30C-D1BD-430F-B00D-FBF53CC081A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD6258D-7942-4278-87B2-26FDD0546124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD6258D-7942-4278-87B2-26FDD0546124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD6258D-7942-4278-87B2-26FDD0546124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD6258D-7942-4278-87B2-26FDD0546124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B78ED2-92B1-4271-8156-2409E445D8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B78ED2-92B1-4271-8156-2409E445D8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B78ED2-92B1-4271-8156-2409E445D8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B78ED2-92B1-4271-8156-2409E445D8AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
