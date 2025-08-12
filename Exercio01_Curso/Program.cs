@@ -102,6 +102,6 @@ considerando a nomenclatura usada
 (F) decimal renda extra = 91.45m; Não pode haver espaço entre duas palvras ou são juntas ou sepradas por sublinhado
 (F) bool status$conta = false;Sem caracteres no meio 
 (V) string titulo3 = “Tópico 1”; Pode terminar em numero
-(F) float salario_mensal = 1999.55f; Olha até q a variavel vai ser declarada dboa, só não segue a convenção Camel Case, por isso coloquei como falso
+(V) float salario_mensal = 1999.55f; Olha até q a variavel vai ser declarada dboa, só não segue a convenção Camel Case, por isso coloquei como falso
 (V) int percentualValorDesconto = 5; Tudo certo por aqui de acordo com o Camel Case
-(V) const bool MENSALIDADE_EM_DIA = true; Tudo certo tbm, constantes realmente todos os caractesres são maiusculo */ 
+(V) const bool MENSALIDADE_EM_DIA = true; Tudo certo tbm, constantes realmente todos os caractesres são maiusculo */
