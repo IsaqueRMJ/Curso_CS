@@ -25,8 +25,19 @@ Console.WriteLine("Bole\vde\vtpote");
 // double e long, 8 byte
 // decimal, 16 byte
 
-var num_1 = 10;
-var num_3 = 20f;
-int num_4 = num_3;
+//Armazenamento menor cabe no armazenamento maior 
 
-Console.WriteLine(num_2);
+//Conversão por metodo .ToString() e Convert.To...
+
+var numInt = 10;
+var numString = numInt.ToString();
+var numConvert = Convert.ToDecimal(numInt);
+
+// Entrada de dados
+Console.WriteLine("Digite seu nome e dps a idade");
+string? nomeEntrada = Console.ReadLine();
+var idadeEntrada = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine($"Seu nome é {nomeEntrada} e vc tem {idadeEntrada}");
+Console.WriteLine();
+// Operadores Matematicos e Operadores de atribuição 
