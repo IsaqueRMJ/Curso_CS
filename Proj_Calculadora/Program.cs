@@ -21,7 +21,7 @@ if (escolha == "1")
     Console.WriteLine($"As operações com o numero {numero01} e o numero {numero02} é:");
     Console.Write($"Soma:{soma}\nSubtração:{subtracao}\nMultiplicação:{multiplicacao}\nDivisão:{divisao.ToString("N2")}\n");
 }
-else if  (escolha == "2")
+else if (escolha == "2")
 {
     Console.WriteLine("Qual operação você deseja fazer:\n1-Adição\n2-Subtração\n3-Multiplicação\n4-Divisão");
     Console.Write("Qual opção desja fazer: ");
@@ -31,20 +31,20 @@ else if  (escolha == "2")
         case "1":
             Console.WriteLine($"A soma dos números {numero01} e {numero02} é igual: {soma}");
             break;
-         case "2":
+        case "2":
             Console.WriteLine($"A subtração dos números {numero01} e {numero02} é igual: {subtracao}");
             break;
-         case "3":
+        case "3":
             Console.WriteLine($"A multiplicação dos números {numero01} e {numero02} é igual: {multiplicacao}");
             break;
-         case "4":
+        case "4":
             Console.WriteLine($"A divisão dos números {numero01} e {numero02} é igual: {divisao.ToString("N2")}");
             break;
-        
+
         default:
             Console.WriteLine("Valor inválido");
             break;
-   }
+    } 
 }
 else
 {
