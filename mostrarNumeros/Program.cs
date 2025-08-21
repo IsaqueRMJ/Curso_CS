@@ -31,21 +31,10 @@ while (true)
         // case "3":
         //     for (var i = 0; numeroInicial <= numeroFinal; i++)
         //     {
-        //         var primo = false;
-        //         for (var j = 2; numeroFinal > j; j++)
-        //         {
-        //             if (numeroFinal % j == 0)
-        //             {
-        //                 Console.WriteLine($"O numero {numeroInicial} não é primo");
-        //             }
-        //             else
-        //             {
-        //                 Console.WriteLine($"O numero {numeroInicial} é primo");
-        //             }
-        //         }
-                
+        //         if (numeroInicial % 2 == 0&& )
+        //             Console.WriteLine($"O numero {numeroInicial} é impar");
         //         numeroInicial++;
-        //     }
+        //     } 
         //     break;
         default:
             break;
