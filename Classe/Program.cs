@@ -1,33 +1,25 @@
-﻿var C1 = new Cachorro();
+﻿var aluno_01 = new aluno();
+aluno_01.nome = "Isaque";
+aluno_01.idade = 17;
+aluno_01.nota = 5.0m;
 
-C1.nome = "Sheik";
-C1.raca = "viralata";
-C1.cor = "Preto";
-C1.idade = 1.5m;
-C1.peso = 5.5m;
-C1.tamanho = 0.5m;
-Console.WriteLine(C1.Late(1==2));
-class Cachorro()
+aluno_01.aprovacaoao(aluno_01.nota, aluno_01.nome);
+public class aluno//Classe é o conjunto de objetos, ojeto é um instancia da classe
 {
-    public string? nome;
-    public string? raca;
-    public decimal? idade;
-    public string? cor;
-    public decimal? peso;
-    public decimal? tamanho;
-
-    public string Late(bool barulho)
+    public string nome;
+    public int idade;
+    public decimal nota;
+    public void aprovacaoao(decimal nota, string nomeAluno)
     {
-        string? latido;
-        if (barulho == true)
+        if (nota >= 6)
         {
-            latido = "AU AU AU AU";
+            Console.WriteLine($"O aluno  {nomeAluno} passou de ano");
         }
         else
         {
-            latido = "(O cachorro está em silêncio)";
-
+            Console.WriteLine($"O aluno {nomeAluno} não passou de ano");
         }
-        return latido;
+
     }
+
 }
