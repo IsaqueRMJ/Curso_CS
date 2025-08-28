@@ -2,17 +2,19 @@
 var running = true;
 while (running)
 {
-    Console.WriteLine("\nBem vindo(a) a sua lisa de tarefas");
+    Console.WriteLine("\nBem vindo(a) a sua lista de tarefas");
     Console.Write("1-Adicionar tarefa\n2-Listar terefas\n3-Remover tarefa\n4-Sair\n\n");
     var escolha = Console.ReadLine();
     switch (escolha)
     {
         case "1":
-            Console.WriteLine($"Digite a tarefa que você deseja adcionar: ");
-            var tarefa = Console.ReadLine();
-            tarefas.Add(tarefa);
-            Console.Write("Sua tarefa foi adicionada...");
-            Console.Read();
+            while (tru) {
+                Console.WriteLine($"Digite a tarefa que você deseja adcionar: ");
+                var tarefa = Console.ReadLine();
+                tarefas.Add(tarefa);
+                Console.Write("Sua tarefa foi adicionada...");
+                Console.Read();
+            }
             continue;
         case "2":
             if (tarefas.Count() == 0)
@@ -35,12 +37,22 @@ while (running)
         case "3":
             Console.WriteLine("Você deseja remover a tarefa por nome ou por indice? ");
             var escolha_01 = Console.ReadLine();
-            if (escolha.ToLower() == "nome")
+            if (escolha_01.ToLower() == "nome")
             {
-                
-            }if (escolha.ToLower() == "indice")
+                Console.WriteLine("Digite a tarefa");
+                var tarefaRemove = Console.ReadLine();
+                tarefas.Remove(tarefaRemove);
+
+                Console.Write("Removido com sucesso...");
+                Console.Read();
+            }
+            if (escolha_01.ToLower() == "indice")
             {
-                
+                Console.WriteLine("Digite o indice da tarefa");
+                var tarefaRemove = Convert.ToInt32(Console.ReadLine());
+                tarefas.RemoveAt(tarefaRemove+1);
+                Console.Write("Removido com sucesso...");
+                Console.Read();
             }
             continue;
         case "4":
