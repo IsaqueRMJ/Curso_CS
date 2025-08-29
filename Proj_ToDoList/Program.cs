@@ -8,12 +8,31 @@ while (running)
     switch (escolha)
     {
         case "1":
-            while (tru) {
+            while (true)
+            {
                 Console.WriteLine($"Digite a tarefa que você deseja adcionar: ");
                 var tarefa = Console.ReadLine();
                 tarefas.Add(tarefa);
-                Console.Write("Sua tarefa foi adicionada...");
-                Console.Read();
+                Console.Write("Sua tarefa foi adicionada...\n");
+
+                Console.Write("Você deseja continuar a adicionar (s/n)? ");
+                var continuar = Console.ReadLine();
+                if (continuar == "s")
+                {
+                    continue;
+                }
+                else if (continuar == "n")
+                {
+                    Console.Write("Click qualquer tecla para volar ao menu...");
+                    Console.Read();
+                    break;
+                }
+                else
+                {
+                    Console.Write("ERROR, Saindo automanticamente...");
+                    Console.Read();
+                    break;
+                }
             }
             continue;
         case "2":
@@ -50,7 +69,7 @@ while (running)
             {
                 Console.WriteLine("Digite o indice da tarefa");
                 var tarefaRemove = Convert.ToInt32(Console.ReadLine());
-                tarefas.RemoveAt(tarefaRemove+1);
+                tarefas.RemoveAt(tarefaRemove-1);
                 Console.Write("Removido com sucesso...");
                 Console.Read();
             }
