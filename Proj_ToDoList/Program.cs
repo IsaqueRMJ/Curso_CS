@@ -1,4 +1,4 @@
-﻿List<string> tarefas = new List<string>() { };
+List<string> tarefas = new List<string>() { };
 while (true)
 {
     Console.WriteLine("\nBem vindo(a) a sua lista de tarefas");
@@ -64,7 +64,7 @@ while (true)
                 escolha = Console.ReadLine();
                 if (escolha.ToLower() == "nome")//Por escrito
                 {
-                    Console.WriteLine("Digite a tarefa(escreva por extenso)");
+                    Console.WriteLine("Digite a tarefa (escreva por extenso)");
                     var tarefaRemove = Console.ReadLine();
                     if (tarefas.IndexOf(tarefaRemove) == -1)//Se não tiver ele avisa que não existe essa tarefa
                     {
@@ -85,7 +85,7 @@ while (true)
                 {
                     Console.WriteLine("Digite o indice da tarefa(valor numérico)");
                     var tarefaRemove = Convert.ToInt32(Console.ReadLine());
-                    if (tarefaRemove > tarefas.Count() || tarefaRemove < 0)
+                    if (tarefaRemove > tarefas.Count() || tarefaRemove <= 0)
                     {
                         Console.WriteLine("Esse item não está na lista...");
                         Console.Read();
@@ -94,7 +94,7 @@ while (true)
                     {
                         tarefas.RemoveAt(tarefaRemove - 1);
                         Console.Write("Removido com sucesso...");
-                        Console.Read(); 
+                        Console.Read();
                     }
                     
                 }
@@ -112,6 +112,7 @@ while (true)
             Console.WriteLine("Saindo...");
             Console.Read();
             break;
+            
         default://Digitar um valor não existente
             Console.WriteLine("Valor inválido, tente novamente...");
             Console.Read();
