@@ -1,22 +1,27 @@
-List<string> tarefas = new List<string>() { };
+using System.Text.Json;
+
+string caminhoArquivo = "tarefas.json";
+List<string> tarefas = new();
+await CarregarTarefasAsync();
 while (true)
 {
-    Console.WriteLine("\nBem vindo(a) a sua lista de tarefas");
-    Console.Write("1-Adicionar tarefa\n2-Listar terefas\n3-Remover tarefa\n4-Sair\n\n");
+    Console.WriteLine("\nBem-vindo(a) à sua lista de tarefas");
+    Console.Write("1 - Adicionar tarefa\n2 - Listar tarefas\n3 - Remover tarefa\n4 - Sair\n\n");
     var escolha = Console.ReadLine();
     switch (escolha)
     {
-        case "1"://Adicionar itens
+        case "1": //Adicionar itens
             while (true)
             {
-                Console.WriteLine($"Digite a tarefa que você deseja adcionar: ");
+                Console.WriteLine("Digite a tarefa que você deseja adicionar: ");
                 var tarefa = Console.ReadLine();
                 tarefas.Add(tarefa);
-                Console.Write("Sua tarefa foi adicionada...\n");
+                await SalvarTarefasAsync();
+                Console.WriteLine("Sua tarefa foi adicionada...");
 
                 Console.Write("Você deseja continuar a adicionar (s/n)? ");
                 escolha = Console.ReadLine();
-                if (escolha == "s")
+               if (escolha == "s")
                 {
                     continue;
                 }
@@ -34,13 +39,14 @@ while (true)
                 }
             }
             continue;
-        case "2"://Listar itens
-            if (tarefas.Count() == 0)//Confere se tem algo na lista
+
+        case "2": // Listar itens
+            if (tarefas.Count() == 0)
             {
-                Console.Write("Atualmente sua lista de tarefas está vazia... ");
+                Console.WriteLine("Atualmente sua lista de tarefas está vazia...");
                 Console.Read();
             }
-            else if (tarefas.Count() > 0)//Se tiver algo ele mostra os itens
+            else
             {
                 Console.WriteLine("Você tem tarefas na sua lista: ");
                 int i = 0;
@@ -52,72 +58,81 @@ while (true)
                 Console.Read();
             }
             continue;
-        case "3"://Remover tarefa
-            if (tarefas.Count() == 0)//Verificar se tem algo na lista
+
+        case "3": // Remover tarefa
+            if (tarefas.Count() == 0)
             {
-                Console.Write("Atualmente sua lista de tarefas está vazia... ");
+                Console.WriteLine("Atualmente sua lista de tarefas está vazia...");
                 Console.Read();
             }
             else
             {
-                Console.WriteLine("Você deseja remover a tarefa por nome ou por indice? ");//Remover de acordo com a listagem ou pelo a escrita da tarefa
+                Console.WriteLine("Você deseja remover a tarefa por nome ou por índice? ");
                 escolha = Console.ReadLine();
-                if (escolha.ToLower() == "nome")//Por escrito
+
+                if (escolha.ToLower() == "nome")
                 {
                     Console.WriteLine("Digite a tarefa (escreva por extenso)");
                     var tarefaRemove = Console.ReadLine();
-                    if (tarefas.IndexOf(tarefaRemove) == -1)//Se não tiver ele avisa que não existe essa tarefa
+                    if (tarefas.IndexOf(tarefaRemove) == -1)
                     {
                         Console.WriteLine("Esse item não está na lista...");
-                        Console.Read();
                     }
                     else
                     {
-                        tarefas.Remove(tarefaRemove);
-                        Console.Write("Removido com sucesso...");
-                        Console.Read();
+                        await SalvarTarefasAsync();
+                        Console.WriteLine("Removido com sucesso...");
                     }
-                        
-
-                    
+                    Console.Read();
                 }
-                else if (escolha.ToLower() == "indice")//Por numero
+                else if (escolha.ToLower() == "indice")
                 {
-                    Console.WriteLine("Digite o indice da tarefa(valor numérico)");
+                    Console.WriteLine("Digite o índice da tarefa (valor numérico)");
                     var tarefaRemove = Convert.ToInt32(Console.ReadLine());
                     if (tarefaRemove > tarefas.Count() || tarefaRemove <= 0)
                     {
                         Console.WriteLine("Esse item não está na lista...");
-                        Console.Read();
                     }
                     else
                     {
                         tarefas.RemoveAt(tarefaRemove - 1);
-                        Console.Write("Removido com sucesso...");
-                        Console.Read();
+                        await SalvarTarefasAsync();
+                        Console.WriteLine("Removido com sucesso...");
                     }
-                    
+                    Console.Read();
                 }
                 else
                 {
                     Console.WriteLine("ERROR, opção inexistente, retornando ao menu...");
-                    Console.Read(); 
+                    Console.Read();
                 }
-                    
-                
             }
-
             continue;
-        case "4"://Sair
+
+        case "4": // Sair
             Console.WriteLine("Saindo...");
             Console.Read();
             break;
-            
-        default://Digitar um valor não existente
+
+        default:
             Console.WriteLine("Valor inválido, tente novamente...");
             Console.Read();
             continue;
-
     }
     break;
+}
+
+async Task SalvarTarefasAsync()//Tranforma a lista em json
+{
+    string json = JsonSerializer.Serialize(tarefas);
+    await File.WriteAllTextAsync(caminhoArquivo, json);
+}
+
+async Task CarregarTarefasAsync()//Transforma o json em lista
+{
+    if (File.Exists(caminhoArquivo))
+    {
+        string json = await File.ReadAllTextAsync(caminhoArquivo);
+        tarefas = JsonSerializer.Deserialize<List<string>>(json);
+    }
 }

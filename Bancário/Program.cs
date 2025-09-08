@@ -1,4 +1,4 @@
-﻿// Projeto simples de Sistema de caixa eletronico
+﻿// Projeto inicial bancario
 
 // Fluxo Esperado
 // 1-O sistema pergunta o nome do titular e o saldo inicial.
