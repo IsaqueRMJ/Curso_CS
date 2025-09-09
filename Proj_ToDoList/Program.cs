@@ -1,7 +1,10 @@
 using System.Text.Json;
 
-string caminhoArquivo = "tarefas.json";
+string caminhoArquivoTarefa = "tarefas.json";
+string caminhoArquivoDatas = "datas.json";
+List<DateTime> datas = new();
 List<string> tarefas = new();
+
 await CarregarTarefasAsync();
 while (true)
 {
@@ -15,7 +18,9 @@ while (true)
             {
                 Console.WriteLine("Digite a tarefa que você deseja adicionar: ");
                 var tarefa = Console.ReadLine();
+                DateTime data = DateTime.Now;
                 tarefas.Add(tarefa);
+                datas.Add(data);
                 await SalvarTarefasAsync();
                 Console.WriteLine("Sua tarefa foi adicionada...");
 
@@ -52,7 +57,8 @@ while (true)
                 int i = 0;
                 foreach (var Tarefa in tarefas)//Para cada item na lista ele repete
                 {
-                    Console.WriteLine($"{i + 1}-{tarefas[i]}");
+                    Console.Write($"{i + 1}-{tarefas[i]}, registrada ");
+                    Console.WriteLine(datas[i]);
                     i++;
                 }
                 Console.Read();
@@ -74,12 +80,14 @@ while (true)
                 {
                     Console.WriteLine("Digite a tarefa (escreva por extenso)");
                     var tarefaRemove = Console.ReadLine();
-                    if (tarefas.IndexOf(tarefaRemove) == -1)
+                    if (tarefas.IndexOf(tarefaRemove) == -1 || tarefas.IndexOf(tarefaRemove) > tarefas.Count)
                     {
                         Console.WriteLine("Esse item não está na lista...");
                     }
                     else
                     {
+                        datas.RemoveAt(tarefas.IndexOf(tarefaRemove));
+                        tarefas.Remove(tarefaRemove);
                         await SalvarTarefasAsync();
                         Console.WriteLine("Removido com sucesso...");
                     }
@@ -96,6 +104,7 @@ while (true)
                     else
                     {
                         tarefas.RemoveAt(tarefaRemove - 1);
+                        datas.RemoveAt(tarefaRemove - 1);
                         await SalvarTarefasAsync();
                         Console.WriteLine("Removido com sucesso...");
                     }
@@ -124,15 +133,21 @@ while (true)
 
 async Task SalvarTarefasAsync()//Tranforma a lista em json
 {
-    string json = JsonSerializer.Serialize(tarefas);
-    await File.WriteAllTextAsync(caminhoArquivo, json);
+    string json1 = JsonSerializer.Serialize(tarefas);
+    string json2 = JsonSerializer.Serialize(datas);
+    await File.WriteAllTextAsync(caminhoArquivoTarefa, json1);
+    await File.WriteAllTextAsync(caminhoArquivoDatas, json2);
+
 }
 
 async Task CarregarTarefasAsync()//Transforma o json em lista
 {
-    if (File.Exists(caminhoArquivo))
+    if (File.Exists(caminhoArquivoTarefa) && File.Exists(caminhoArquivoDatas))
     {
-        string json = await File.ReadAllTextAsync(caminhoArquivo);
-        tarefas = JsonSerializer.Deserialize<List<string>>(json);
+        string json1 = await File.ReadAllTextAsync(caminhoArquivoTarefa);
+        tarefas = JsonSerializer.Deserialize<List<string>>(json1);
+
+        string json2 = await File.ReadAllTextAsync(caminhoArquivoDatas);
+        datas = JsonSerializer.Deserialize<List<DateTime>>(json2);
     }
 }

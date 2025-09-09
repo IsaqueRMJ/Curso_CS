@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proj_ToDoList", "Proj_ToDoL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aprendendo ARRAYS", "Aprendendo ARRAYS\Aprendendo ARRAYS.csproj", "{34A7E21C-9737-44AE-A7BE-8F560BB0C192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjToDoList_Objeto", "ProjToDoList_Objeto\ProjToDoList_Objeto.csproj", "{07BAB3E4-3ADB-4D52-992E-3F67098377DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{34A7E21C-9737-44AE-A7BE-8F560BB0C192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A7E21C-9737-44AE-A7BE-8F560BB0C192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A7E21C-9737-44AE-A7BE-8F560BB0C192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07BAB3E4-3ADB-4D52-992E-3F67098377DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BAB3E4-3ADB-4D52-992E-3F67098377DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BAB3E4-3ADB-4D52-992E-3F67098377DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BAB3E4-3ADB-4D52-992E-3F67098377DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
