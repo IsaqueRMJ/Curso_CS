@@ -53,7 +53,6 @@ while (true)
             continue;
 
         case "2": // Listar itens
-            var ordem = false;
             if (tarefas.Count() == 0)
             {
                 Console.WriteLine("Atualmente sua lista de tarefas está vazia...");
@@ -66,13 +65,7 @@ while (true)
 
                 if (escolha == "fazer")
                 {
-                    Console.Write("Quer ver as terafas em ordem crescente ou decrescente na data: ");
-                    escolha = Console.ReadLine();
-                    if (escolha == "decrescente") { ordem = true; }
-                    else if (escolha == "crescente") {}
-                    else{Console.WriteLine("ERROR 404");}
-                    Console.WriteLine("Você tem na sua lista de tarefas a FAZER: ");
-                    GetTask(tarefas, datas, ordem);
+                    GetTask(tarefas, datas,escolha);
                 }
                 else if (escolha == "feitas")
                 {
@@ -84,13 +77,7 @@ while (true)
                     }
                     else
                     {
-                        Console.Write("Quer ver as terafas em ordem crescente ou decrescente na data: ");
-                        escolha = Console.ReadLine();
-                        if (escolha == "decrescente") { ordem = true; }
-                        else if (escolha == "crescente") { }
-                        else { Console.WriteLine("ERROR 404"); }
-                        Console.WriteLine("Você tem na sua lista  de tarefas CONCLUIDAS: ");
-                        GetTask(tarefasConcluidas, datasConsluidas, ordem);
+                        GetTask(tarefasConcluidas, datasConsluidas,escolha);
                     }
                 }
                 else
@@ -176,6 +163,7 @@ while (true)
 
 void TaskDone(bool done,int num)//Função para a task ser feita ou não
 {
+    
     if (done)
     {
         tarefasConcluidas.Add(tarefas[num]);
@@ -184,15 +172,38 @@ void TaskDone(bool done,int num)//Função para a task ser feita ou não
     else { }
 }
 
-void GetTask(List<string> Tasks,List<DateTime> Dates, bool decrescente)
+void ValidarLis(List<string> Task)
 {
-    if (decrescente)
+    if (Task.Count() == 0)
+    {
+        Console.WriteLine("Atualmente sua lista de tarefas está vazia...");
+        Console.Read();
+    }
+    else
+    {
+
+    }
+
+    return bool
+}
+
+
+void GetTask(List<string> Tasks,List<DateTime> Dates, string Tipo)
+{
+    var ordem = false;
+    Console.Write("Quer ver as terafas em ordem crescente ou decrescente na data: ");
+    var escolha = Console.ReadLine();
+    if (escolha == "decrescente") { ordem = true; }
+    else if (escolha == "crescente") {}
+    else{Console.WriteLine("ERROR 404");}
+    if (ordem)
     {
         Tasks.Reverse();
         Dates.Reverse();
     }
     else { }
     int i = 0;
+    Console.WriteLine($"Você tem na sua lista de tarefas a {Tipo.ToUpper()}: ");
     foreach (var Tarefa in Tasks)
     {//Para cada item na lista ele repete
 

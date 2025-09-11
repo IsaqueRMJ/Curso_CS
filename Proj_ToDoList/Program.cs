@@ -6,6 +6,7 @@ string caminhoArquivoDatas = "datas.json";
 string caminhoArquivoConcluidas = "Concluidas.json";
 string caminhoArquivoConcluidasDatas = "datasConcluidas.json";
 
+var token = "crescente";
 
 List<DateTime> datas = new();
 List<DateTime> datasConsluidas = new();
@@ -59,19 +60,16 @@ while (true)
                 Console.Read();
             }
             else
-            {   
+            {
+
                 Console.Write("Quer ver as terafas a \"fazer\" ou as \"feitas\": ");
                 escolha = Console.ReadLine();
-                if (escolha ==  "fazer"){
-                    Console.WriteLine("Você tem na sua lista de tarefas a FAZER: ");
-                    int i = 0;
-                    foreach (var Tarefa in tarefas)//Para cada item na lista ele repete
-                    {
-                        Console.Write($"{i + 1}-{tarefas[i]}, registrada ");
-                        Console.WriteLine(datas[i]);
-                        i++;
-                    }
-                } else if (escolha == "feitas")
+
+                if (escolha == "fazer")
+                {
+                    GetTask(tarefas, datas,escolha, ref token);
+                }
+                else if (escolha == "feitas")
                 {
                     if (tarefasConcluidas.Count() == 0)
                     {
@@ -81,15 +79,7 @@ while (true)
                     }
                     else
                     {
-                        Console.WriteLine("Você tem na sua lista  de tarefas CONCLUIDAS: ");
-                        int i = 0;
-                        foreach (var Tarefa in tarefasConcluidas)
-                        {//Para cada item na lista ele repete
-
-                            Console.Write($"{i + 1}-{tarefasConcluidas[i]}, registrada ");
-                            Console.WriteLine(datasConsluidas[i]);
-                            i++;
-                        }
+                        GetTask(tarefasConcluidas, datasConsluidas, escolha, ref token);
                     }
                 }
                 else
@@ -175,6 +165,7 @@ while (true)
 
 void TaskDone(bool done,int num)//Função para a task ser feita ou não
 {
+    
     if (done)
     {
         tarefasConcluidas.Add(tarefas[num]);
@@ -183,16 +174,22 @@ void TaskDone(bool done,int num)//Função para a task ser feita ou não
     else { }
 }
 
-void GetTask(List<string> Tasks,List<DateTime> Dates, bool decrescente)
+
+void GetTask(List<string> Tasks,List<DateTime> Dates, string Tipo, ref string token)
 {
-    if (decrescente)
+    Console.Write("Quer ver as terafas em ordem crescente ou decrescente na data: ");
+    var escolha = Console.ReadLine();
+    if ((escolha == "decrescente" && token != escolha) || (escolha == "crescente" && token != escolha))
     {
-        Tasks.OrderByDescending(p=>p);
-        Dates.OrderBy(n=>n);
+        token = escolha;
+        Tasks.Reverse();
+        Dates.Reverse();
+
     }
-    else { }
-    Console.WriteLine("Você tem na sua lista  de tarefas CONCLUIDAS: ");
+    else if (escolha == token){ }
+    else { Console.WriteLine("ERROR 404"); }
     int i = 0;
+    Console.WriteLine($"Você tem na sua lista de tarefas a {Tipo.ToUpper()}: ");
     foreach (var Tarefa in Tasks)
     {//Para cada item na lista ele repete
 
