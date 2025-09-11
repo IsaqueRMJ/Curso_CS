@@ -1,9 +1,16 @@
+//using System.IO;
 using System.Text.Json;
 
 string caminhoArquivoTarefa = "tarefas.json";
 string caminhoArquivoDatas = "datas.json";
+string caminhoArquivoConcluidas = "Concluidas.json";
+string caminhoArquivoConcluidasDatas = "datasConcluidas.json";
+
+
 List<DateTime> datas = new();
+List<DateTime> datasConsluidas = new();
 List<string> tarefas = new();
+List<string> tarefasConcluidas = new();
 
 await CarregarTarefasAsync();
 while (true)
@@ -26,7 +33,7 @@ while (true)
 
                 Console.Write("Você deseja continuar a adicionar (s/n)? ");
                 escolha = Console.ReadLine();
-               if (escolha == "s")
+                if (escolha == "s")
                 {
                     continue;
                 }
@@ -52,15 +59,44 @@ while (true)
                 Console.Read();
             }
             else
-            {
-                Console.WriteLine("Você tem tarefas na sua lista: ");
-                int i = 0;
-                foreach (var Tarefa in tarefas)//Para cada item na lista ele repete
+            {   
+                Console.Write("Quer ver as terafas a \"fazer\" ou as \"feitas\": ");
+                escolha = Console.ReadLine();
+                if (escolha ==  "fazer"){
+                    Console.WriteLine("Você tem na sua lista de tarefas a FAZER: ");
+                    int i = 0;
+                    foreach (var Tarefa in tarefas)//Para cada item na lista ele repete
+                    {
+                        Console.Write($"{i + 1}-{tarefas[i]}, registrada ");
+                        Console.WriteLine(datas[i]);
+                        i++;
+                    }
+                } else if (escolha == "feitas")
                 {
-                    Console.Write($"{i + 1}-{tarefas[i]}, registrada ");
-                    Console.WriteLine(datas[i]);
-                    i++;
+                    if (tarefasConcluidas.Count() == 0)
+                    {
+                        Console.WriteLine("Atualmente sua lista de tarefas está vazia...");
+                        Console.Read();
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Você tem na sua lista  de tarefas CONCLUIDAS: ");
+                        int i = 0;
+                        foreach (var Tarefa in tarefasConcluidas)
+                        {//Para cada item na lista ele repete
+
+                            Console.Write($"{i + 1}-{tarefasConcluidas[i]}, registrada ");
+                            Console.WriteLine(datasConsluidas[i]);
+                            i++;
+                        }
+                    }
                 }
+                else
+                {
+                    Console.WriteLine("ERROR 404");
+                }
+
                 Console.Read();
             }
             continue;
@@ -73,6 +109,10 @@ while (true)
             }
             else
             {
+                Console.WriteLine("Sua terafa já foi concluida? (s/n)"); //Verifica se foi feito
+                escolha = Console.ReadLine();
+                bool feito = false; //Por padrão não foi concluida
+                if (escolha == "s") {feito = true;}//Se feita a chave ganaha um valor true
                 Console.WriteLine("Você deseja remover a tarefa por nome ou por índice? ");
                 escolha = Console.ReadLine();
 
@@ -86,6 +126,7 @@ while (true)
                     }
                     else
                     {
+                        TaskDone(feito,tarefas.IndexOf(tarefaRemove)); //Adicionando as tarefas feita
                         datas.RemoveAt(tarefas.IndexOf(tarefaRemove));
                         tarefas.Remove(tarefaRemove);
                         await SalvarTarefasAsync();
@@ -103,6 +144,7 @@ while (true)
                     }
                     else
                     {
+                        TaskDone(feito, tarefaRemove - 1);
                         tarefas.RemoveAt(tarefaRemove - 1);
                         datas.RemoveAt(tarefaRemove - 1);
                         await SalvarTarefasAsync();
@@ -131,12 +173,48 @@ while (true)
     break;
 }
 
+void TaskDone(bool done,int num)//Função para a task ser feita ou não
+{
+    if (done)
+    {
+        tarefasConcluidas.Add(tarefas[num]);
+        datasConsluidas.Add(datas[num]);
+    }
+    else { }
+}
+
+void GetTask(List<string> Tasks,List<DateTime> Dates, bool decrescente)
+{
+    if (decrescente)
+    {
+        Tasks.OrderByDescending(p=>p);
+        Dates.OrderBy(n=>n);
+    }
+    else { }
+    Console.WriteLine("Você tem na sua lista  de tarefas CONCLUIDAS: ");
+    int i = 0;
+    foreach (var Tarefa in Tasks)
+    {//Para cada item na lista ele repete
+
+        Console.Write($"{i + 1}-{Tasks[i]}, registrada ");
+        Console.WriteLine(Dates[i]);
+        i++;
+    }
+}
+
+
 async Task SalvarTarefasAsync()//Tranforma a lista em json
 {
     string json1 = JsonSerializer.Serialize(tarefas);
     string json2 = JsonSerializer.Serialize(datas);
+    string json3 = JsonSerializer.Serialize(tarefasConcluidas);
+    string json4 = JsonSerializer.Serialize(datasConsluidas);
+
     await File.WriteAllTextAsync(caminhoArquivoTarefa, json1);
     await File.WriteAllTextAsync(caminhoArquivoDatas, json2);
+    await File.WriteAllTextAsync(caminhoArquivoConcluidas, json3);
+    await File.WriteAllTextAsync(caminhoArquivoConcluidasDatas, json4);
+
 
 }
 
@@ -149,5 +227,11 @@ async Task CarregarTarefasAsync()//Transforma o json em lista
 
         string json2 = await File.ReadAllTextAsync(caminhoArquivoDatas);
         datas = JsonSerializer.Deserialize<List<DateTime>>(json2);
+
+        string json3 = await File.ReadAllTextAsync(caminhoArquivoConcluidas);
+        tarefasConcluidas = JsonSerializer.Deserialize<List<string>>(json3);
+
+        string json4 = await File.ReadAllTextAsync(caminhoArquivoConcluidasDatas);
+        datasConsluidas = JsonSerializer.Deserialize<List<DateTime>>(json4);
     }
 }
